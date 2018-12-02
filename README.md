@@ -1,6 +1,6 @@
-# smiledemo
+# Current moon E-commerce management
 
-> A Vue.js project
+> E-commerce management project
 
 ## Build Setup
 
