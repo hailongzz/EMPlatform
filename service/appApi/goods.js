@@ -104,14 +104,22 @@ router.post('/goodsDetailInfo',async(ctx)=>{
                 ctx.body={code:500,message:err}
         }
     })
+    // 根据类别获取商品列表
     router.post('/getGoodsListByCategorySubID',async(ctx)=>{
         try{
-            let categorySubId = ctx.request.body.categorySubId 
+            let categorySubId = ctx.request.body.categorySubId //子类别ID
+            let page = ctx.request.body.page //当前页数
+            console.log(categorySubId)
+            let num = 10;   //每页显示数量
+            let start = (page-1)*num //开始位置
             const Goods = mongoose.model('Goods')
-            let result = await Goods.find({SUB_ID:categorySubId}).exec()
+            let result = await Goods.find({SUB_ID:categorySubId})
+            .skip(start).limit(num).exec()
             ctx.body={code:200,message:result}
+            console.log(page)
         }catch(err){
-            ctx.body={code:500,message:err}
+            ctx.body={code:5001,message:err}
+            console.log(err)
         }
     })
 module.exports = router

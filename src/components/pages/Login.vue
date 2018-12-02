@@ -48,7 +48,7 @@
         created(){
             if(localStorage.userInfo){
                 Toast.success('您已经登录')
-                this.$router.push('/')
+                this.$router.push('/Main')
             }
         },
         methods:{
